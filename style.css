@@ -6770,22 +6770,68 @@ body {
     }
 
 }
-/* MOBILE MENU FIX */
+/* ===== ZENJI FINAL MOBILE MENU FIX ===== */
+
 @media (max-width: 850px) {
+
+    /* MENU button */
     .mobile-menu {
-        position: relative;
-        z-index: 99999;
-        pointer-events: auto;
+        display: block !important;
+        position: relative !important;
+        z-index: 999999 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        background: transparent !important;
+        border: 0 !important;
     }
 
+    /* Mobile navigation panel */
     .mobile-nav {
-        z-index: 99998 !important;
-        pointer-events: auto;
+        position: fixed !important;
+        top: 110px !important;
+        left: 0 !important;
+
+        width: 100vw !important;
+        height: calc(100vh - 110px) !important;
+
+        background: #080808 !important;
+
+        z-index: 999998 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        transform: translateX(100%) !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+
+        pointer-events: none !important;
+
+        overflow-y: auto !important;
+        transition: transform .35s ease, opacity .35s ease,
+                    visibility .35s ease !important;
     }
 
+    /* WHEN MENU IS OPEN */
     .mobile-nav.active {
         transform: translateX(0) !important;
         visibility: visible !important;
         opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Close button */
+    .mobile-close {
+        position: relative !important;
+        z-index: 1000000 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
+
+    /* Mobile links */
+    .mobile-nav-links,
+    .mobile-nav-links a,
+    .mobile-more-trigger {
+        pointer-events: auto !important;
     }
 }
