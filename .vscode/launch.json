@@ -1,0 +1,782 @@
+```css
+/* =========================================
+   ZENJI — GLOBAL STYLES
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --black: #080808;
+    --white: #f5f5f0;
+    --gray: #9b9b96;
+    --line: #292929;
+    --accent: #d7ff00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8, 8, 8, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+}
+
+.header .container {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-left: auto;
+}
+
+.nav a,
+.header-actions button,
+.menu-btn {
+    color: var(--white);
+    background: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover,
+.header-actions button:hover {
+    color: var(--accent);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.cart-btn span {
+    color: var(--accent);
+}
+
+.menu-btn {
+    display: none;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 100vh;
+    padding: 150px 4% 80px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.55) 45%,
+            rgba(0, 0, 0, 0.2) 100%
+        ),
+        radial-gradient(
+            circle at 75% 45%,
+            #353535 0,
+            #111 35%,
+            #080808 70%
+        );
+}
+
+.hero::after {
+    content: 'ZENJI';
+    position: absolute;
+    right: -60px;
+    top: 25%;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(10rem, 25vw, 30rem);
+    color: rgba(255, 255, 255, 0.025);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+}
+
+.hero-label {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.hero-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(5rem, 12vw, 12rem);
+    line-height: 0.82;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+}
+
+.hero-description {
+    max-width: 430px;
+    color: #c2c2bd;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 35px 0;
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 17px 25px;
+    background: var(--accent);
+    color: var(--black);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-4px);
+    background: var(--white);
+}
+
+
+/* =========================================
+   TICKER
+========================================= */
+
+.ticker {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    background: var(--accent);
+    color: var(--black);
+}
+
+.ticker-track {
+    white-space: nowrap;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    animation: ticker 18s linear infinite;
+}
+
+@keyframes ticker {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* =========================================
+   COMMON SECTION
+========================================= */
+
+.collection,
+.products,
+.lookbook {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+    padding: 130px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 55px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 25px;
+}
+
+.section-header p,
+.collection-number,
+.manifesto > p,
+.newsletter > p {
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.section-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   COLLECTION
+========================================= */
+
+.collection-content {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    min-height: 650px;
+}
+
+.collection-image {
+    min-height: 600px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            transparent
+        ),
+        #151515;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-placeholder {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(5rem, 15vw, 14rem);
+    color: rgba(255, 255, 255, 0.08);
+    transform: rotate(-8deg);
+}
+
+.collection-info {
+    padding: 70px 7%;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.collection-info h3 {
+    margin: 25px 0;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3rem, 5vw, 6rem);
+    line-height: 0.9;
+}
+
+.collection-info p:not(.collection-number) {
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 30px;
+}
+
+.collection-info a {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.collection-info a:hover {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.product-card {
+    cursor: pointer;
+}
+
+.product-image {
+    aspect-ratio: 0.78;
+    background:
+        linear-gradient(
+            145deg,
+            #292929,
+            #101010
+        );
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    transition: transform 0.4s ease;
+}
+
+.product-image::before {
+    content: 'ZENJI';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(4rem, 7vw, 8rem);
+    color: rgba(255, 255, 255, 0.08);
+}
+
+.product-card:hover .product-image {
+    transform: scale(0.97);
+}
+
+.product-image span {
+    position: relative;
+    z-index: 2;
+    background: var(--accent);
+    color: var(--black);
+    padding: 7px 10px;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 0;
+}
+
+.product-info h3,
+.product-info p {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.product-info p {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   MANIFESTO
+========================================= */
+
+.manifesto {
+    min-height: 80vh;
+    padding: 120px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.manifesto h2 {
+    max-width: 1200px;
+    margin-top: 35px;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(4rem, 10vw, 11rem);
+    line-height: 0.85;
+}
+
+.manifesto h2 span {
+    color: var(--accent);
+    display: block;
+}
+
+
+/* =========================================
+   LOOKBOOK
+========================================= */
+
+.lookbook-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 350px 350px;
+    gap: 15px;
+}
+
+.lookbook-item {
+    background:
+        linear-gradient(
+            145deg,
+            #2c2c2c,
+            #111
+        );
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    transition: transform 0.4s ease;
+}
+
+.lookbook-item:hover {
+    transform: scale(0.98);
+}
+
+.lookbook-item.large {
+    grid-row: span 2;
+    font-size: 4rem;
+}
+
+
+/* =========================================
+   NEWSLETTER
+========================================= */
+
+.newsletter {
+    padding: 150px 5%;
+    background: var(--accent);
+    color: var(--black);
+}
+
+.newsletter h2 {
+    max-width: 1000px;
+    margin: 25px 0 55px;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(4rem, 9vw, 10rem);
+    line-height: 0.85;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 750px;
+    border-bottom: 2px solid var(--black);
+}
+
+.newsletter-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 20px 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.newsletter-form button {
+    background: transparent;
+    color: var(--black);
+    font-weight: 800;
+    padding: 20px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    padding: 80px 5% 35px;
+    background: var(--black);
+}
+
+.footer-logo {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(6rem, 18vw, 18rem);
+    line-height: 0.8;
+    letter-spacing: -5px;
+}
+
+.footer-links {
+    margin-top: 90px;
+    display: flex;
+    gap: 100px;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links p {
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    margin-top: 100px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--gray);
+    font-size: 0.65rem;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .nav {
+        gap: 18px;
+    }
+
+    .header-actions {
+        gap: 12px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-content {
+        grid-template-columns: 1fr;
+    }
+
+    .collection-image {
+        min-height: 500px;
+    }
+
+    .lookbook-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .header .container {
+        min-height: 65px;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+
+    .nav,
+    .header-actions {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        min-height: 90vh;
+        padding: 120px 5% 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(4.5rem, 20vw, 8rem);
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        max-width: 330px;
+    }
+
+    .collection,
+    .products,
+    .lookbook {
+        padding: 90px 0;
+    }
+
+    .section-header {
+        display: block;
+    }
+
+    .section-header p {
+        margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+        font-size: clamp(3rem, 15vw, 6rem);
+    }
+
+    .collection-image {
+        min-height: 380px;
+    }
+
+    .collection-info {
+        padding: 45px 25px;
+    }
+
+    .collection-info h3 {
+        font-size: 3.5rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-info {
+        display: block;
+    }
+
+    .product-info h3 {
+        margin-bottom: 7px;
+        line-height: 1.3;
+    }
+
+    .manifesto {
+        min-height: 65vh;
+        padding: 90px 5%;
+    }
+
+    .manifesto h2 {
+        font-size: clamp(3.5rem, 17vw, 7rem);
+    }
+
+    .lookbook-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .lookbook-item,
+    .lookbook-item.large {
+        min-height: 300px;
+        grid-row: auto;
+        font-size: 2.5rem;
+    }
+
+    .newsletter {
+        padding: 90px 5%;
+    }
+
+    .newsletter h2 {
+        font-size: clamp(4rem, 17vw, 7rem);
+        margin-bottom: 45px;
+    }
+
+    .newsletter-form {
+        display: block;
+        border: 0;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+        border-bottom: 2px solid var(--black);
+    }
+
+    .newsletter-form button {
+        padding: 20px 0;
+    }
+
+    .footer {
+        padding: 70px 5% 30px;
+    }
+
+    .footer-logo {
+        font-size: 28vw;
+    }
+
+    .footer-links {
+        margin-top: 70px;
+        gap: 60px;
+    }
+
+    .copyright {
+        margin-top: 70px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .product-grid {
+        gap: 8px;
+    }
+
+    .product-info h3,
+    .product-info p {
+        font-size: 0.62rem;
+    }
+
+    .hero-title {
+        font-size: 4.2rem;
+    }
+}
+```

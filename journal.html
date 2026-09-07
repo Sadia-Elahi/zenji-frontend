@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZENJI — Journal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           ZENJI JOURNAL PAGE
+        ========================= */
+
+        .journal-page {
+            background: #f7f5f2;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        /* HERO */
+
+        .journal-hero {
+            min-height: 72vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            padding: 140px 20px 100px;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.35),
+                    rgba(0,0,0,0.45)
+                ),
+                url("https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Will-of-the-sun-4.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .journal-hero-content {
+            max-width: 850px;
+            color: #fff;
+        }
+
+        .journal-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .journal-hero h1 {
+            font-size: clamp(55px, 9vw, 125px);
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin: 0 0 30px;
+            font-weight: 700;
+        }
+
+        .journal-hero p {
+            max-width: 600px;
+            margin: auto;
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           JOURNAL INTRO
+        ========================= */
+
+        .journal-intro {
+            padding: 110px 7%;
+            text-align: center;
+        }
+
+        .journal-intro h2 {
+            font-size: clamp(35px, 5vw, 65px);
+            margin: 0 0 20px;
+            letter-spacing: -2px;
+        }
+
+        .journal-intro p {
+            max-width: 650px;
+            margin: auto;
+            color: #666;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FEATURED ARTICLE
+        ========================= */
+
+        .featured-journal {
+            padding: 0 7% 100px;
+        }
+
+        .featured-journal-card {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            min-height: 560px;
+            background: #111;
+            color: #fff;
+        }
+
+        .featured-journal-image {
+            min-height: 500px;
+
+            background-image:
+                url("https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Demon-blood-4.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .featured-journal-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 70px;
+        }
+
+        .article-number {
+            font-size: 11px;
+            letter-spacing: 3px;
+            opacity: 0.6;
+            margin-bottom: 25px;
+        }
+
+        .featured-journal-content h3 {
+            font-size: clamp(35px, 4vw, 65px);
+            line-height: 0.95;
+            margin: 0 0 25px;
+            letter-spacing: -2px;
+        }
+
+        .featured-journal-content p {
+            color: #bbb;
+            line-height: 1.8;
+            font-size: 14px;
+            max-width: 450px;
+            margin-bottom: 35px;
+        }
+
+        .journal-button {
+            display: inline-flex;
+            width: fit-content;
+
+            padding: 15px 25px;
+
+            border: 1px solid rgba(255,255,255,0.6);
+
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            transition: all 0.3s ease;
+        }
+
+        .journal-button:hover {
+            background: #fff;
+            color: #111;
+        }
+
+
+        /* =========================
+           ARTICLES
+        ========================= */
+
+        .journal-articles {
+            padding: 30px 7% 120px;
+        }
+
+        .journal-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid #ccc;
+
+            padding-bottom: 20px;
+            margin-bottom: 45px;
+        }
+
+        .journal-section-title h2 {
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .journal-section-title span {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #777;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .article-card {
+            background: #fff;
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .article-image {
+            height: 360px;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 30px;
+        }
+
+        .article-meta {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .article-content h3 {
+            font-size: 25px;
+            line-height: 1.05;
+            margin: 0 0 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .article-content p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .read-more {
+            color: #111;
+            text-decoration: none;
+
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+        }
+
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .journal-quote {
+            padding: 120px 7%;
+            background: #111;
+            color: #fff;
+            text-align: center;
+        }
+
+        .journal-quote h2 {
+            max-width: 900px;
+            margin: auto;
+
+            font-size: clamp(35px, 5vw, 70px);
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .journal-quote p {
+            margin-top: 30px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #999;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .journal-hero {
+                min-height: 60vh;
+                padding: 120px 20px 80px;
+            }
+
+            .journal-hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .journal-intro {
+                padding: 80px 6%;
+            }
+
+            .featured-journal {
+                padding: 0 5% 80px;
+            }
+
+            .featured-journal-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-journal-image {
+                min-height: 450px;
+            }
+
+            .featured-journal-content {
+                padding: 50px 35px;
+            }
+
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .journal-hero {
+                min-height: 55vh;
+                padding: 110px 20px 70px;
+            }
+
+            .journal-label {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .journal-hero h1 {
+                font-size: 55px;
+                margin-bottom: 20px;
+            }
+
+            .journal-hero p {
+                font-size: 12px;
+            }
+
+            .journal-intro {
+                padding: 65px 25px;
+            }
+
+            .journal-intro h2 {
+                font-size: 38px;
+            }
+
+            .featured-journal {
+                padding: 0 20px 70px;
+            }
+
+            .featured-journal-image {
+                min-height: 330px;
+            }
+
+            .featured-journal-content {
+                padding: 40px 25px;
+            }
+
+            .featured-journal-content h3 {
+                font-size: 40px;
+            }
+
+            .journal-articles {
+                padding: 20px 20px 80px;
+            }
+
+            .journal-section-title h2 {
+                font-size: 22px;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .article-image {
+                height: 400px;
+            }
+
+            .article-content {
+                padding: 25px;
+            }
+
+            .journal-quote {
+                padding: 80px 25px;
+            }
+
+            .journal-quote h2 {
+                font-size: 40px;
+                letter-spacing: -1.5px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body class="journal-page">
+
+
+   
+                <!-- MORE DROPDOWN -->
+
+                <div class="more-dropdown">
+
+                    <button class="more-trigger" type="button">
+                        <span>MORE</span>
+                        <span class="more-arrow">↕</span>
+                    </button>
+
+                    <div class="more-menu">
+
+                        <a href="drop-archive.html">
+                            DROP ARCHIVE
+                        </a>
+
+                        <a href="journal.html">
+                            ZENJI JOURNAL
+                        </a>
+
+                        <a href="community.html">
+                            COMMUNITY
+                        </a>
+
+                        <a href="collaboration.html">
+                            COLLABORATION
+                        </a>
+
+                        <a href="wishlist.html">
+                            WISHLIST
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="journal-hero">
+
+        <div class="journal-hero-content">
+
+            <div class="journal-label">
+                ZENJI® JOURNAL
+            </div>
+
+            <h1>
+                THE<br>
+                JOURNAL
+            </h1>
+
+            <p>
+                Stories, ideas, culture and inspiration
+                behind the world of ZENJI.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section class="journal-intro">
+
+        <h2>
+            MORE THAN CLOTHING.
+        </h2>
+
+        <p>
+            ZENJI is built around identity, movement and
+            the stories that shape us. Explore the ideas,
+            inspirations and creative worlds behind every drop.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         FEATURED
+    ========================= -->
+
+    <section class="featured-journal">
+
+        <div class="featured-journal-card">
+
+            <div class="featured-journal-image"></div>
+
+            <div class="featured-journal-content">
+
+                <div class="article-number">
+                    FEATURED STORY — 001
+                </div>
+
+                <h3>
+                    THE SPIRIT
+                    BEHIND ZENJI
+                </h3>
+
+                <p>
+                    Where anime culture meets modern streetwear.
+                    Discover the philosophy, influences and
+                    creative energy behind ZENJI.
+                </p>
+
+                <a href="#" class="journal-button">
+                    READ STORY →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ARTICLES
+    ========================= -->
+
+    <section class="journal-articles">
+
+        <div class="journal-section-title">
+
+            <h2>
+                LATEST STORIES
+            </h2>
+
+            <span>
+                03 STORIES
+            </span>
+
+        </div>
+
+
+        <div class="article-grid">
+
+
+            <!-- ARTICLE 01 -->
+
+            <article class="article-card">
+
+                <div class="article-image">
+
+                    <img
+                        src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Blue-flame-4.webp"
+                        alt="Blue Flame Tee"
+                    >
+
+                </div>
+
+                <div class="article-content">
+
+                    <div class="article-meta">
+                        CULTURE — 001
+                    </div>
+
+                    <h3>
+                        WHY ANIME
+                        INSPIRES US
+                    </h3>
+
+                    <p>
+                        The visual language, characters and
+                        emotions that continue to influence
+                        modern street culture.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        READ MORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ARTICLE 02 -->
+
+            <article class="article-card">
+
+                <div class="article-image">
+
+                    <img
+                        src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Bushido-4.webp"
+                        alt="Bushido Tee"
+                    >
+
+                </div>
+
+                <div class="article-content">
+
+                    <div class="article-meta">
+                        DESIGN — 002
+                    </div>
+
+                    <h3>
+                        FROM IDEA
+                        TO GARMENT
+                    </h3>
+
+                    <p>
+                        A look into the creative process behind
+                        turning an idea into something you can wear.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        READ MORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ARTICLE 03 -->
+
+            <article class="article-card">
+
+                <div class="article-image">
+
+                    <img
+                        src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Water-breathing-4.webp"
+                        alt="Water Breathing Tee"
+                    >
+
+                </div>
+
+                <div class="article-content">
+
+                    <div class="article-meta">
+                        ZENJI — 003
+                    </div>
+
+                    <h3>
+                        BUILD YOUR
+                        OWN PATH
+                    </h3>
+
+                    <p>
+                        Your style is your story. Why standing
+                        apart from the crowd is part of the ZENJI spirit.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        READ MORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         QUOTE
+    ========================= -->
+
+    <section class="journal-quote">
+
+        <h2>
+            WEAR WHAT
+            DEFINES YOU.
+        </h2>
+
+        <p>
+            ZENJI® — BUILT FOR THE DIFFERENT
+        </p>
+
+    </section>
+
+
+
+    
+
+</body>
+</html>

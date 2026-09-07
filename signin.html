@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In — ZENJI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #090909;
+            color: #fff;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* TOP BAR */
+        .signin-top {
+            height: 48px;
+            background: #e60000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .signin-top span {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* NAV */
+        .signin-nav {
+            height: 82px;
+            border-bottom: 1px solid #242424;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .signin-logo {
+            width: 76px;
+            height: 58px;
+            border: 1px solid #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #fff;
+            text-decoration: none;
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .back-home {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: .25s ease;
+        }
+
+        .back-home:hover {
+            color: #fff;
+        }
+
+        /* MAIN */
+        .signin-main {
+            flex: 1;
+            min-height: calc(100vh - 130px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .signin-box {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .signin-kicker {
+            text-align: center;
+            color: #777;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .signin-title {
+            text-align: center;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: .9;
+            font-weight: 950;
+            letter-spacing: -4px;
+            margin-bottom: 18px;
+        }
+
+        .signin-title span {
+            color: #e60000;
+        }
+
+        .signin-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 42px;
+        }
+
+        /* FORM */
+        .signin-form {
+            width: 100%;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            color: #aaa;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 9px;
+        }
+
+        .field input {
+            width: 100%;
+            height: 54px;
+            background: #111;
+            border: 1px solid #303030;
+            outline: none;
+            padding: 0 16px;
+
+            color: #fff;
+            font-size: 14px;
+
+            transition: .25s ease;
+        }
+
+        .field input:focus {
+            border-color: #e60000;
+        }
+
+        .forgot {
+            display: block;
+            text-align: right;
+            margin-top: -5px;
+            margin-bottom: 28px;
+
+            color: #777;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .forgot:hover {
+            color: #fff;
+        }
+
+        .signin-button {
+            width: 100%;
+            height: 56px;
+
+            border: 1px solid #e60000;
+            background: #e60000;
+            color: #fff;
+
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .signin-button:hover {
+            background: #fff;
+            color: #090909;
+            border-color: #fff;
+        }
+
+        /* DIVIDER */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 32px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #252525;
+        }
+
+        .divider span {
+            color: #555;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        /* CREATE ACCOUNT */
+        .create-account {
+            text-align: center;
+            color: #777;
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        .create-account a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 800;
+            margin-left: 5px;
+            border-bottom: 1px solid #e60000;
+            padding-bottom: 2px;
+        }
+
+        .create-account a:hover {
+            color: #e60000;
+        }
+
+        /* FOOTER */
+        .signin-footer {
+            padding: 24px 5%;
+            border-top: 1px solid #202020;
+            text-align: center;
+        }
+
+        .signin-footer span {
+            color: #555;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            .signin-top {
+                height: 42px;
+            }
+
+            .signin-top span {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .signin-nav {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .signin-logo {
+                width: 66px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .signin-main {
+                padding: 45px 20px;
+            }
+
+            .signin-title {
+                letter-spacing: -3px;
+            }
+
+            .signin-subtitle {
+                margin-bottom: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signin-top">
+        <span>ZENJI // ENTER YOUR WORLD</span>
+    </div>
+
+    <nav class="signin-nav">
+
+        <a href="index.html" class="signin-logo">
+            ZENJI
+        </a>
+
+        <a href="index.html" class="back-home">
+            ← BACK TO HOME
+        </a>
+
+    </nav>
+
+    <main class="signin-main">
+
+        <div class="signin-box">
+
+            <div class="signin-kicker">
+                MEMBER ACCESS
+            </div>
+
+            <h1 class="signin-title">
+                SIGN <span>IN</span>
+            </h1>
+
+            <p class="signin-subtitle">
+                ENTER YOUR ZENJI ACCOUNT
+            </p>
+
+            <form class="signin-form">
+
+                <div class="field">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="your@email.com"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="password">PASSWORD</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                    >
+                </div>
+
+                <a href="#" class="forgot">
+                    FORGOT PASSWORD?
+                </a>
+
+                <button type="submit" class="signin-button">
+                    SIGN IN
+                </button>
+
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <div class="create-account">
+                DON'T HAVE AN ACCOUNT?
+                <a href="#">CREATE ONE</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="signin-footer">
+        <span>ZENJI // WEAR YOUR STORY.</span>
+    </footer>
+
+</body>
+</html>

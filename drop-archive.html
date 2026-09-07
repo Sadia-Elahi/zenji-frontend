@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZENJI — Drop Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           ZENJI DROP ARCHIVE
+        ========================================= */
+
+        .archive-page {
+            background: #080808;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* HERO */
+
+        .archive-hero {
+            min-height: 70vh;
+            padding: 170px 6vw 80px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            border-bottom: 1px solid rgba(255,255,255,.15);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .archive-hero::before {
+            content: "ARCHIVE";
+
+            position: absolute;
+            right: -20px;
+            bottom: -70px;
+
+            font-size: clamp(100px, 20vw, 300px);
+            font-weight: 900;
+            letter-spacing: -10px;
+
+            color: rgba(255,255,255,.025);
+
+            pointer-events: none;
+        }
+
+        .archive-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            opacity: .6;
+        }
+
+        .archive-hero h1 {
+            font-size: clamp(60px, 10vw, 150px);
+            line-height: .85;
+            letter-spacing: -5px;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .archive-hero h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        .archive-description {
+            max-width: 500px;
+            margin-top: 35px;
+
+            font-size: 13px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,.6);
+        }
+
+
+        /* ARCHIVE HEADER */
+
+        .archive-section {
+            padding: 100px 6vw;
+        }
+
+        .archive-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-bottom: 60px;
+
+            border-bottom: 1px solid rgba(255,255,255,.15);
+            padding-bottom: 25px;
+        }
+
+        .archive-top-left span {
+            font-size: 10px;
+            letter-spacing: 3px;
+            opacity: .5;
+        }
+
+        .archive-top-left h2 {
+            margin: 12px 0 0;
+
+            font-size: clamp(35px, 5vw, 70px);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .archive-count {
+            font-size: 11px;
+            letter-spacing: 2px;
+            opacity: .5;
+        }
+
+
+        /* DROP BLOCK */
+
+        .archive-drop {
+            margin-bottom: 100px;
+        }
+
+        .drop-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .drop-heading h3 {
+            margin: 0;
+
+            font-size: 25px;
+            letter-spacing: 1px;
+        }
+
+        .drop-heading span {
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: .5;
+        }
+
+
+        /* PRODUCT GRID */
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .archive-card {
+            position: relative;
+            overflow: hidden;
+
+            background: #111;
+
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .archive-image {
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .archive-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform .6s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .archive-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .archive-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            background: #000;
+            padding: 7px 9px;
+        }
+
+        .archive-info {
+            padding: 18px 15px 22px;
+
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+
+        .archive-info h4 {
+            margin: 0 0 7px;
+
+            font-size: 13px;
+            letter-spacing: 1.5px;
+        }
+
+        .archive-info p {
+            margin: 0;
+
+            font-size: 9px;
+            letter-spacing: 2px;
+
+            color: rgba(255,255,255,.45);
+        }
+
+
+        /* ARCHIVED MESSAGE */
+
+        .archive-message {
+            margin-top: 120px;
+
+            padding: 80px 30px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-bottom: 1px solid rgba(255,255,255,.15);
+        }
+
+        .archive-message span {
+            font-size: 10px;
+            letter-spacing: 4px;
+            opacity: .5;
+        }
+
+        .archive-message h2 {
+            margin: 25px 0;
+
+            font-size: clamp(40px, 7vw, 100px);
+            line-height: .9;
+            letter-spacing: -3px;
+        }
+
+        .archive-message h2 em {
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            font-style: normal;
+        }
+
+        .archive-message p {
+            max-width: 500px;
+            margin: auto;
+
+            color: rgba(255,255,255,.5);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+
+        /* CTA */
+
+        .archive-cta {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .archive-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+
+            padding: 18px 28px;
+
+            border: 1px solid rgba(255,255,255,.7);
+
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+
+            transition: .3s ease;
+        }
+
+        .archive-cta a:hover {
+            background: #fff;
+            color: #000;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .archive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .archive-hero {
+                min-height: 60vh;
+                padding: 140px 25px 60px;
+            }
+
+            .archive-hero h1 {
+                font-size: 65px;
+                letter-spacing: -3px;
+            }
+
+            .archive-section {
+                padding: 70px 20px;
+            }
+
+            .archive-top {
+                align-items: flex-start;
+                gap: 20px;
+                flex-direction: column;
+            }
+
+            .archive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .archive-drop {
+                margin-bottom: 70px;
+            }
+
+            .archive-message {
+                margin-top: 70px;
+                padding: 60px 20px;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .archive-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1px;
+            }
+
+            .archive-info {
+                padding: 13px 10px 17px;
+            }
+
+            .archive-info h4 {
+                font-size: 10px;
+            }
+
+            .archive-info p {
+                font-size: 8px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body class="archive-page">
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                ZENJI
+            </a>
+
+            <nav class="desktop-nav">
+
+                <a href="index.html">
+                    HOME
+                </a>
+
+                <a href="collection.html">
+                    COLLECTION
+                </a>
+
+                <a href="lookbook.html">
+                    LOOKBOOK
+                </a>
+
+                <a href="our-story.html">
+                    OUR STORY
+                </a>
+
+                <!-- MORE -->
+
+                <div class="more-dropdown">
+
+                    <button class="more-trigger" type="button">
+                        <span>MORE</span>
+                        <span class="more-arrow">↕</span>
+                    </button>
+
+                    <div class="more-menu">
+
+                        <a href="drop-archive.html">
+                            DROP ARCHIVE
+                        </a>
+
+                        <a href="journal.html">
+                            ZENJI JOURNAL
+                        </a>
+
+                        <a href="community.html">
+                            COMMUNITY
+                        </a>
+
+                        <a href="collaboration.html">
+                            COLLABORATION
+                        </a>
+
+                        <a href="wishlist.html">
+                            WISHLIST
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+
+            <div class="header-icons">
+
+                <button aria-label="Search">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+                    </svg>
+                </button>
+
+                <button class="cart-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 4h2l2 12h11l3-9H6"></path>
+                        <circle cx="10" cy="20" r="1"></circle>
+                        <circle cx="18" cy="20" r="1"></circle>
+                    </svg>
+
+                    <span class="cart-number">0</span>
+
+                </button>
+
+                <a href="signin.html" class="account-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 22c0-5 3-8 8-8s8 3 8 8"></path>
+                    </svg>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         ARCHIVE HERO
+    ========================================= -->
+
+    <main>
+
+        <section class="archive-hero">
+
+            <span class="archive-label">
+                ZENJI // ARCHIVE_001
+            </span>
+
+            <h1>
+                DROP
+                <span>ARCHIVE.</span>
+            </h1>
+
+            <p class="archive-description">
+                EVERY DROP TELLS A STORY.
+                EXPLORE THE PIECES THAT BUILT THE ZENJI UNIVERSE.
+                LIMITED RELEASES. NO RESTOCKS.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ARCHIVE PRODUCTS
+        ========================================= -->
+
+        <section class="archive-section">
+
+            <div class="archive-top">
+
+                <div class="archive-top-left">
+
+                    <span>
+                        ZENJI // RELEASE HISTORY
+                    </span>
+
+                    <h2>
+                        THE ORIGIN
+                    </h2>
+
+                </div>
+
+                <span class="archive-count">
+                    DROP 001 // 10 PIECES
+                </span>
+
+            </div>
+
+
+
+            <!-- DROP 001 -->
+
+            <div class="archive-drop">
+
+                <div class="drop-heading">
+
+                    <h3>
+                        DROP 001 — THE ORIGIN
+                    </h3>
+
+                    <span>
+                        ARCHIVED // NO RESTOCK
+                    </span>
+
+                </div>
+
+
+                <div class="archive-grid">
+
+
+                    <!-- 01 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Blue-flame-4.webp"
+                                alt="Blue Flame Tee"
+                            >
+
+                            <span class="archive-number">
+                                01
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                BLUE FLAME TEE
+                            </h4>
+
+                            <p>
+                                THE_ORIGIN_DROP
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 02 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Bushido-4.webp"
+                                alt="Bushido Tee"
+                            >
+
+                            <span class="archive-number">
+                                02
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                BUSHIDO TEE
+                            </h4>
+
+                            <p>
+                                THE_ORIGIN_DROP
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 03 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Demon-blood-4.webp"
+                                alt="Demon Blood Tee"
+                            >
+
+                            <span class="archive-number">
+                                03
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                DEMON BLOOD TEE
+                            </h4>
+
+                            <p>
+                                THE_ORIGIN_DROP
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 04 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Domain-expansion-4.webp"
+                                alt="Domain Expansion Tee"
+                            >
+
+                            <span class="archive-number">
+                                04
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                DOMAIN EXPANSION TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 05 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Free-soul-4.webp"
+                                alt="Free Soul Tee"
+                            >
+
+                            <span class="archive-number">
+                                05
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                FREE SOUL TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 06 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Limitless-4.webp"
+                                alt="Limitless Tee"
+                            >
+
+                            <span class="archive-number">
+                                06
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                LIMITLESS TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 07 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Paradise-spirit-4.webp"
+                                alt="Paradise Spirit Tee"
+                            >
+
+                            <span class="archive-number">
+                                07
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                PARADISE SPIRIT TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 08 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Warrior-spirit-5.webp"
+                                alt="Warrior Spirit Tee"
+                            >
+
+                            <span class="archive-number">
+                                08
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                WARRIOR SPIRIT TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 09 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Water-breathing-4.webp"
+                                alt="Water Breathing Tee"
+                            >
+
+                            <span class="archive-number">
+                                09
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                WATER BREATHING TEE
+                            </h4>
+
+                            <p>
+                                ZENJI COLLECTION
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- 10 -->
+
+                    <a href="#shop" class="archive-card">
+
+                        <div class="archive-image">
+
+                            <img
+                                src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Will-of-the-sun-4.webp"
+                                alt="Will of the Sun Tee"
+                            >
+
+                            <span class="archive-number">
+                                10
+                            </span>
+
+                        </div>
+
+                        <div class="archive-info">
+
+                            <h4>
+                                WILL OF THE SUN TEE
+                            </h4>
+
+                            <p>
+                                THE_ORIGIN_DROP
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ARCHIVE MESSAGE
+            ========================================= -->
+
+            <div class="archive-message">
+
+                <span>
+                    ZENJI // ARCHIVED
+                </span>
+
+                <h2>
+                    NO RESTOCKS.
+                    <em>EVER.</em>
+                </h2>
+
+                <p>
+                    EVERY ZENJI DROP EXISTS FOR A LIMITED TIME.
+                    ONCE IT'S GONE, IT BECOMES PART OF THE ARCHIVE.
+                    THE NEXT ARC IS ALWAYS WAITING.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- CTA -->
+
+        <section class="archive-cta">
+
+            <a href="collection.html">
+                EXPLORE CURRENT COLLECTION
+                <span>→</span>
+            </a>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="zenji-footer">
+
+        <div class="footer-watermark">
+            ZENJI
+        </div>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="footer-symbol">
+                    Z
+                </div>
+
+                <p class="footer-description">
+                    Wear the Arc. Anime-inspired
+                    streetwear for gamers and otaku.
+                    Every drop limited. No restocks. Ever.
+                </p>
+
+                <div class="footer-follow-title">
+                    FOLLOW THE LORE
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>DROPS</h4>
+
+                <a href="index.html">Home</a>
+                <a href="drop-archive.html">Drop Archive</a>
+                <a href="collection.html">Collection</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>EXPLORE</h4>
+
+                <a href="lookbook.html">Lookbook</a>
+                <a href="our-story.html">Our Story</a>
+                <a href="collection.html">Collection</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>COMMUNITY</h4>
+
+                <a href="#">TikTok</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">YouTube</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>CONTACT</h4>
+
+                <a href="#">FAQ</a>
+                <a href="#">Review</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+                <a href="#">Help</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Contact Us</a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 ZENJI
+                </span>
+
+                <span>
+                    SYSTEM // ZENJI
+                </span>
+
+                <span>
+                    WEAR YOUR WORLD
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

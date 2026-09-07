@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZENJI — Community</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           COMMUNITY PAGE
+        ========================= */
+
+        .community-page {
+            background: #f5f4f1;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        /* HERO */
+
+        .community-hero {
+            min-height: 72vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 140px 20px 100px;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.42),
+                    rgba(0,0,0,.55)
+                ),
+                url("https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Warrior-spirit-5.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .community-hero-content {
+            color: #fff;
+            max-width: 850px;
+        }
+
+        .community-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+
+        .community-hero h1 {
+            font-size: clamp(55px, 10vw, 130px);
+            line-height: .88;
+            letter-spacing: -5px;
+            margin: 0 0 30px;
+        }
+
+        .community-hero p {
+            max-width: 600px;
+            margin: auto;
+
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+
+        /* INTRO */
+
+        .community-intro {
+            padding: 110px 7%;
+            text-align: center;
+        }
+
+        .community-intro h2 {
+            font-size: clamp(38px, 6vw, 75px);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin: 0 0 25px;
+        }
+
+        .community-intro p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* COMMUNITY CARDS */
+
+        .community-section {
+            padding: 0 7% 110px;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .community-card {
+            background: #111;
+            color: #fff;
+
+            padding: 50px 35px;
+            min-height: 300px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            transition:
+                transform .3s ease,
+                background .3s ease;
+        }
+
+        .community-card:hover {
+            transform: translateY(-8px);
+            background: #1b1b1b;
+        }
+
+        .community-number {
+            font-size: 10px;
+            letter-spacing: 3px;
+            opacity: .5;
+        }
+
+        .community-card h3 {
+            font-size: 32px;
+            line-height: 1;
+            margin: 30px 0 15px;
+            letter-spacing: -1px;
+        }
+
+        .community-card p {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .community-link {
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            border-bottom: 1px solid #777;
+            padding-bottom: 7px;
+
+            width: fit-content;
+        }
+
+
+        /* =========================
+           COMMUNITY MANIFESTO
+        ========================= */
+
+        .community-manifesto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            min-height: 600px;
+
+            background: #111;
+            color: #fff;
+        }
+
+        .manifesto-image {
+            background-image:
+                url("https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Free-soul-4.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .manifesto-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 80px;
+        }
+
+        .manifesto-content span {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .manifesto-content h2 {
+            font-size: clamp(40px, 5vw, 70px);
+            line-height: .9;
+            letter-spacing: -3px;
+            margin: 0 0 30px;
+        }
+
+        .manifesto-content p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+
+        /* =========================
+           JOIN COMMUNITY
+        ========================= */
+
+        .join-community {
+            padding: 120px 7%;
+            text-align: center;
+        }
+
+        .join-community h2 {
+            font-size: clamp(40px, 6vw, 80px);
+            line-height: .9;
+            letter-spacing: -3px;
+            margin: 0 0 25px;
+        }
+
+        .join-community p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 550px;
+            margin: 0 auto 35px;
+        }
+
+        .join-button {
+            display: inline-flex;
+
+            padding: 17px 30px;
+
+            background: #111;
+            color: #fff;
+
+            text-decoration: none;
+
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            transition: all .3s ease;
+        }
+
+        .join-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .community-hero {
+                min-height: 60vh;
+                padding: 120px 20px 80px;
+            }
+
+            .community-hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .community-intro {
+                padding: 80px 6%;
+            }
+
+            .community-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .community-manifesto {
+                grid-template-columns: 1fr;
+            }
+
+            .manifesto-image {
+                min-height: 450px;
+            }
+
+            .manifesto-content {
+                padding: 60px 7%;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .community-hero {
+                min-height: 55vh;
+                padding: 110px 20px 70px;
+            }
+
+            .community-label {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .community-hero h1 {
+                font-size: 55px;
+                letter-spacing: -2px;
+            }
+
+            .community-hero p {
+                font-size: 12px;
+            }
+
+            .community-intro {
+                padding: 70px 25px;
+            }
+
+            .community-intro h2 {
+                font-size: 40px;
+                letter-spacing: -1.5px;
+            }
+
+            .community-section {
+                padding: 0 20px 80px;
+            }
+
+            .community-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .community-card {
+                min-height: 280px;
+                padding: 40px 30px;
+            }
+
+            .manifesto-image {
+                min-height: 350px;
+            }
+
+            .manifesto-content {
+                padding: 60px 25px;
+            }
+
+            .manifesto-content h2 {
+                font-size: 45px;
+                letter-spacing: -2px;
+            }
+
+            .join-community {
+                padding: 80px 25px;
+            }
+
+            .join-community h2 {
+                font-size: 45px;
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="community-page">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                ZENJI®
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">HOME</a>
+
+                <a href="collection.html">
+                    COLLECTION
+                </a>
+
+                <a href="lookbook.html">
+                    LOOKBOOK
+                </a>
+
+                <a href="our-story.html">
+                    OUR STORY
+                </a>
+
+
+                <!-- MORE -->
+
+                <div class="more-dropdown">
+
+                    <button
+                        class="more-trigger"
+                        type="button"
+                    >
+                        <span>MORE</span>
+                        <span class="more-arrow">↕</span>
+                    </button>
+
+
+                    <div class="more-menu">
+
+                        <a href="drop-archive.html">
+                            DROP ARCHIVE
+                        </a>
+
+                        <a href="journal.html">
+                            ZENJI JOURNAL
+                        </a>
+
+                        <a href="community.html">
+                            COMMUNITY
+                        </a>
+
+                        <a href="collaboration.html">
+                            COLLABORATION
+                        </a>
+
+                        <a href="wishlist.html">
+                            WISHLIST
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="community-hero">
+
+        <div class="community-hero-content">
+
+            <div class="community-label">
+                ZENJI® COMMUNITY
+            </div>
+
+            <h1>
+                ONE<br>
+                COMMUNITY.
+            </h1>
+
+            <p>
+                A space for people who share the same energy,
+                creativity and love for the worlds that inspire us.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section class="community-intro">
+
+        <h2>
+            WE ARE ZENJI.
+        </h2>
+
+        <p>
+            ZENJI isn't just about what you wear.
+            It's about the people behind it.
+            Connect, share your style and become part
+            of a growing community built around creativity
+            and individuality.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         COMMUNITY FEATURES
+    ========================= -->
+
+    <section class="community-section">
+
+        <div class="community-grid">
+
+
+            <!-- CARD 01 -->
+
+            <div class="community-card">
+
+                <div class="community-number">
+                    COMMUNITY — 001
+                </div>
+
+                <div>
+
+                    <h3>
+                        SHARE
+                        YOUR STYLE.
+                    </h3>
+
+                    <p>
+                        Show the world how you wear ZENJI.
+                        Tag us and share your favorite looks
+                        with the community.
+                    </p>
+
+                </div>
+
+                <a href="#" class="community-link">
+                    SHARE YOUR LOOK →
+                </a>
+
+            </div>
+
+
+
+            <!-- CARD 02 -->
+
+            <div class="community-card">
+
+                <div class="community-number">
+                    COMMUNITY — 002
+                </div>
+
+                <div>
+
+                    <h3>
+                        JOIN
+                        THE CONVERSATION.
+                    </h3>
+
+                    <p>
+                        Talk about your favorite drops,
+                        characters, designs and everything
+                        that inspires you.
+                    </p>
+
+                </div>
+
+                <a href="#" class="community-link">
+                    JOIN COMMUNITY →
+                </a>
+
+            </div>
+
+
+
+            <!-- CARD 03 -->
+
+            <div class="community-card">
+
+                <div class="community-number">
+                    COMMUNITY — 003
+                </div>
+
+                <div>
+
+                    <h3>
+                        STAY
+                        CONNECTED.
+                    </h3>
+
+                    <p>
+                        Be the first to know about upcoming
+                        drops, events and exclusive ZENJI updates.
+                    </p>
+
+                </div>
+
+                <a href="#" class="community-link">
+                    FOLLOW ZENJI →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MANIFESTO
+    ========================= -->
+
+    <section class="community-manifesto">
+
+        <div class="manifesto-image"></div>
+
+        <div class="manifesto-content">
+
+            <span>
+                THE ZENJI MINDSET
+            </span>
+
+            <h2>
+                NEVER
+                FOLLOW.
+                CREATE.
+            </h2>
+
+            <p>
+                We believe style should feel personal.
+                Your interests, your stories and your
+                influences make you who you are.
+                ZENJI is a place where you don't have
+                to fit in.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JOIN CTA
+    ========================= -->
+
+    <section class="join-community">
+
+        <h2>
+            BECOME
+            PART OF IT.
+        </h2>
+
+        <p>
+            Follow the journey. Share your world.
+            Discover people who speak the same language.
+        </p>
+
+        <a href="#" class="join-button">
+            JOIN THE ZENJI COMMUNITY →
+        </a>
+
+    </section>
+
+
+
+    
+</body>
+</html>
