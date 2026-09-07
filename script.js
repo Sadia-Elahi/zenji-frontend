@@ -1,26 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
+    // Mobile Menu
+const menuButton = document.querySelector(".mobile-menu");
+const mobileNav = document.querySelector(".mobile-nav");
+const closeButton = document.querySelector(".mobile-close");
 
-    const menuButton = document.querySelector(".mobile-menu");
-    const mobileNav = document.querySelector(".mobile-nav");
+menuButton?.addEventListener("click", () => {
+  mobileNav.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
 
-    if (menuButton && mobileNav) {
+closeButton?.addEventListener("click", () => {
+  mobileNav.classList.remove("active");
+  document.body.style.overflow = "";
+});
 
-        menuButton.addEventListener("click", () => {
+document.querySelectorAll(".mobile-nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileNav.classList.remove("active");
+    document.body.style.overflow = "";
+  });
+});
 
-            mobileNav.classList.toggle("active");
+// Mobile MORE dropdown
+const moreTrigger = document.querySelector(".mobile-more-trigger");
+const mobileMore = document.querySelector(".mobile-more");
 
-            menuButton.textContent =
-                mobileNav.classList.contains("active")
-                    ? "CLOSE"
-                    : "MENU";
-        });
-    }
-
-
+moreTrigger?.addEventListener("click", () => {
+  mobileMore.classList.toggle("active");
+});
     /* =====================================================
        ZENJI INFORMATION DATA
     ===================================================== */

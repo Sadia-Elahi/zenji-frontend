@@ -637,8 +637,7 @@
 </a>
             </div>
 
-           <button class="mobile-menu" type="button"
-        onclick="document.querySelector('.mobile-nav').classList.add('active')">
+           <button class="mobile-menu" type="button">
     MENU
 </button>
             <!-- MOBILE NAVIGATION -->
@@ -646,8 +645,7 @@
 
     <div class="mobile-nav-top">
         <span>ZENJI®</span>
-        <button class="mobile-close" type="button"
-        onclick="document.querySelector('.mobile-nav').classList.remove('active')">
+        <button class="mobile-close" type="button">
     CLOSE ×
 </button>
     </div>
@@ -1280,34 +1278,6 @@
 
 <script src="script.js"></script>
 
-<!-- MOBILE MENU SCRIPT -->
-<script>
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const mobileClose = document.querySelector('.mobile-close');
-    const mobileMore = document.querySelector('.mobile-more');
-    const mobileMoreTrigger = document.querySelector('.mobile-more-trigger');
-
-    if (mobileMenu && mobileNav) {
-        mobileMenu.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-
-    if (mobileClose && mobileNav) {
-        mobileClose.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-
-    if (mobileMore && mobileMoreTrigger) {
-        mobileMoreTrigger.addEventListener('click', () => {
-            mobileMore.classList.toggle('active');
-        });
-    }
-</script>
 
 </body>
 </html>
