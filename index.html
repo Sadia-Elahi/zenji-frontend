@@ -637,13 +637,19 @@
 </a>
             </div>
 
-            <button class="mobile-menu">MENU</button>
+           <button class="mobile-menu" type="button"
+        onclick="document.querySelector('.mobile-nav').classList.add('active')">
+    MENU
+</button>
             <!-- MOBILE NAVIGATION -->
 <div class="mobile-nav">
 
     <div class="mobile-nav-top">
         <span>ZENJI®</span>
-        <button class="mobile-close">CLOSE ×</button>
+        <button class="mobile-close" type="button"
+        onclick="document.querySelector('.mobile-nav').classList.remove('active')">
+    CLOSE ×
+</button>
     </div>
 
     <div class="mobile-nav-links">

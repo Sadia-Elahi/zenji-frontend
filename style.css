@@ -6770,3 +6770,22 @@ body {
     }
 
 }
+/* MOBILE MENU FIX */
+@media (max-width: 850px) {
+    .mobile-menu {
+        position: relative;
+        z-index: 99999;
+        pointer-events: auto;
+    }
+
+    .mobile-nav {
+        z-index: 99998 !important;
+        pointer-events: auto;
+    }
+
+    .mobile-nav.active {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
